@@ -145,14 +145,28 @@ zmk_hid_boot_report_t *zmk_hid_get_boot_report(void) {
 }
 #endif
 
-static inline int select_keyboard_usage(zmk_key_t usage) {
-    if (usage > ZMK_HID_KEYBOARD_NKRO_MAX_USAGE) {
-        return -EINVAL;
+// hid.c 内の select_keyboard_usage を探して、これだけを入れる
+static int select_keyboard_usage(uint16_t usage) {
+    uint16_t target_usage = usage;
+
+    // US配列のキー位置を、JIS配列の物理キーコードにマッピングし直す
+    switch (usage) {
+        case 0x1F: target_usage = 0x2F; break; // 2 -> @
+        case 0x23: target_usage = 0x2E; break; // 6 -> ^
+        case 0x24: target_usage = 0x23; break; // 7 -> &
+        case 0x25: target_usage = 0x34; break; // 8 -> *
+        case 0x26: target_usage = 0x25; break; // 9 -> (
+        case 0x27: target_usage = 0x26; break; // 0 -> )
+        case 0x2D: target_usage = 0x87; break; // - -> _
+        case 0x2E: target_usage = 0x27; break; // = -> =
+        case 0x33: target_usage = 0x24; break; // ' -> '
+        case 0x2F: target_usage = 0x30; break; // [ -> [
+        case 0x30: target_usage = 0x32; break; // ] -> ]
     }
-    TOGGLE_KEYBOARD(usage, 1);
-#if IS_ENABLED(CONFIG_ZMK_USB_BOOT)
-    ++keys_held;
-#endif
+
+    // あとは元の処理に target_usage を渡すだけ
+    // (NKRO版なら以下のようになるはず)
+    keyboard_report.body.keys[target_usage / 8] |= (1 << (target_usage % 8));
     return 0;
 }
 
