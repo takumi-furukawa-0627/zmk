@@ -232,11 +232,13 @@
 #define UNDER (UNDERSCORE)
 
 /* Keyboard = and + (Equal and Plus) */
-#define EQUAL (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_EQUAL_AND_PLUS))
+/* JISでは = は Shift + - (0x2D) なので LS() を追加し参照先を MINUS_AND_UNDERSCORE に変更 */
+#define EQUAL (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_MINUS_AND_UNDERSCORE)))
 #define EQL (EQUAL) // WARNING: DEPRECATED (DO NOT USE)
 
 /* Keyboard + (Plus) */
-#define PLUS (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_EQUAL_AND_PLUS)))
+/* JISでは + は Shift + ; (0x33) なので参照先を SEMICOLON_AND_COLON に変更 */
+#define PLUS (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_SEMICOLON_AND_COLON)))
 
 /* Keyboard [ and { (Left Bracket and Left Brace) */
 /* JISでは単体キー(0x30)のため、参照を RIGHT_BRACKET(0x30) に変更 */
@@ -289,23 +291,27 @@
 #define COLN (COLON) // WARNING: DEPRECATED (DO NOT USE)
 
 /* Keyboard ' and " (Apostrophe and Quote) */
-#define SINGLE_QUOTE (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_APOSTROPHE_AND_QUOTE))
+/* JISでは ' は Shift + 7 (0x24) なので LS() を追加し参照先を 7_AND_AMPERSAND に変更 */
+#define SINGLE_QUOTE (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_7_AND_AMPERSAND)))
 #define SQT (SINGLE_QUOTE)
 #define APOSTROPHE (SINGLE_QUOTE)
 #define APOS (SINGLE_QUOTE)
 #define QUOT (SINGLE_QUOTE) // WARNING: DEPRECATED (DO NOT USE)
 
 /* Keyboard " (Quote) */
-#define DOUBLE_QUOTES                                                                              \
-    (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_APOSTROPHE_AND_QUOTE)))
+/* JISでは " は Shift + 2 (0x1F) なので参照先を 2_AND_AT に変更 */
+#define DOUBLE_QUOTES                                                               \
+    (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_2_AND_AT)))
 #define DQT (DOUBLE_QUOTES)
 
 /* Keyboard ` and ~ (Grave Accent and Tilde) */
-#define GRAVE (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_GRAVE_ACCENT_AND_TILDE))
+/* JISでは ` は Shift + 7 (0x24) なので LS() を追加し参照先を変更 */
+#define GRAVE (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_7_AND_AMPERSAND)))
 #define GRAV (GRAVE) // WARNING: DEPRECATED (DO NOT USE)
 
 /* Keyboard ~ (Tilde) */
-#define TILDE (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_GRAVE_ACCENT_AND_TILDE)))
+/* JISでは ~ は Shift + ^ (0x2E) なので参照先を EQUAL_AND_PLUS に変更 */
+#define TILDE (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_EQUAL_AND_PLUS)))
 #define TILD (TILDE) // WARNING: DEPRECATED (DO NOT USE)
 
 /* Keyboard , and < (Comma and Less Than) */
