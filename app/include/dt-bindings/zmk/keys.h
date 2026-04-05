@@ -226,8 +226,9 @@
 #define MINUS (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_MINUS_AND_UNDERSCORE))
 
 /* Keyboard _ (Underscore) */
-/* LS()を外し、JISの「ろ」に相当する INTERNATIONAL_1 (0x87) を参照 */
-#define UNDERSCORE (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_INTERNATIONAL_1))
+/* JISでは 0x87(INT1) に Shift を乗せないと「ろ」や「\」になります */
+#define UNDERSCORE                                                                  \
+    (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_INTERNATIONAL_1)))
 #define UNDER (UNDERSCORE)
 
 /* Keyboard = and + (Equal and Plus) */
@@ -261,12 +262,14 @@
 #define RBRC (RIGHT_BRACE)
 #define RCUR (RIGHT_BRACE) // WARNING: DEPRECATED (DO NOT USE)
 
-/* Keyboard \ and | (Backslash and Pipe) */
-#define BACKSLASH (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_BACKSLASH_AND_PIPE))
+/* Keyboard \ (Backslash) -> JISでは単体(0x89) */
+#define BACKSLASH                                                                   \
+    (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_BACKSLASH_AND_PIPE))
 #define BSLH (BACKSLASH)
 
-/* Keyboard | (Pipe) */
-#define PIPE (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_BACKSLASH_AND_PIPE)))
+/* Keyboard | (Pipe) -> JISでは Shift + 0x89 */
+#define PIPE                                                                        \
+    (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_BACKSLASH_AND_PIPE)))
 
 /* Keyboard Non-US # and ~ (Non-US Hash/Number and Tilde) */
 #define NON_US_HASH (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_NON_US_HASH_AND_TILDE))
@@ -759,13 +762,15 @@
 #define CURU                                                                                       \
     (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_CURRENCY_UNIT)) // WARNING: DEPRECATED (DO NOT USE)
 
-/* Keypad ( (Left Parenthesis) */
-#define KP_LEFT_PARENTHESIS (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYPAD_LEFT_PARENTHESIS))
-#define KP_LPAR (KP_LEFT_PARENTHESIS)
+/* Keyboard ( (Left Parenthesis) -> JISでは Shift + 8 */
+#define LEFT_PARENTHESIS                                                            \
+    (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_8_AND_ASTERISK)))
+#define LPAR (LEFT_PARENTHESIS)
 
-/* Keypad ) (Right Parenthesis) */
-#define KP_RIGHT_PARENTHESIS (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYPAD_RIGHT_PARENTHESIS))
-#define KP_RPAR (KP_RIGHT_PARENTHESIS)
+/* Keyboard ) (Right Parenthesis) -> JISでは Shift + 9 */
+#define RIGHT_PARENTHESIS                                                           \
+    (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_9_AND_LEFT_PARENTHESIS)))
+#define RPAR (RIGHT_PARENTHESIS)
 
 /* Keypad Space */
 #define KSPC                                                                                       \
