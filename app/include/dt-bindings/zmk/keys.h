@@ -305,8 +305,8 @@
 #define DQT (DOUBLE_QUOTES)
 
 /* Keyboard ` and ~ (Grave Accent and Tilde) */
-/* JISでは ` は Shift + 7 (0x24) なので LS() を追加し参照先を変更 */
-#define GRAVE (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_7_AND_AMPERSAND)))
+/* JISでは ` は Shift + @ (0x2F) なので参照先を LEFT_BRACKET_AND_LEFT_BRACE に変更 */
+#define GRAVE (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_LEFT_BRACKET_AND_LEFT_BRACE)))
 #define GRAV (GRAVE) // WARNING: DEPRECATED (DO NOT USE)
 
 /* Keyboard ~ (Tilde) */
