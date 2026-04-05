@@ -336,7 +336,7 @@
 #define HID_USAGE_KEY_KEYBOARD_EQUAL_AND_PLUS (0x2E)                // Sel
 #define HID_USAGE_KEY_KEYBOARD_LEFT_BRACKET_AND_LEFT_BRACE (0x2F)   // Sel
 #define HID_USAGE_KEY_KEYBOARD_RIGHT_BRACKET_AND_RIGHT_BRACE (0x30) // Sel
-#define HID_USAGE_KEY_KEYBOARD_BACKSLASH_AND_PIPE (0x31)            // Sel
+#define HID_USAGE_KEY_KEYBOARD_BACKSLASH_AND_PIPE (0x89)            // Sel
 #define HID_USAGE_KEY_KEYBOARD_NON_US_HASH_AND_TILDE (0x32)         // Sel
 #define HID_USAGE_KEY_KEYBOARD_SEMICOLON_AND_COLON (0x33)           // Sel
 #define HID_USAGE_KEY_KEYBOARD_APOSTROPHE_AND_QUOTE (0x34)          // Sel
@@ -506,7 +506,7 @@
 #define HID_USAGE_KEY_KEYBOARD_RIGHTSHIFT (0xE5)                    // DV
 #define HID_USAGE_KEY_KEYBOARD_RIGHTALT (0xE6)                      // DV
 #define HID_USAGE_KEY_KEYBOARD_RIGHT_GUI (0xE7)                     // DV
-
+#define HID_USAGE_KEY_INTERNATIONAL_1 (0x87)                        // Sel
 /* Page 0x08: LED */
 #define HID_USAGE_LED_UNDEFINED (0x00)
 #define HID_USAGE_LED_NUM_LOCK (0x01)                   // OOC

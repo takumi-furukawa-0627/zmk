@@ -115,7 +115,8 @@
 #define NUM_2 (NUMBER_2) // WARNING: DEPRECATED (DO NOT USE)
 
 /* Keyboard @ (At sign) */
-#define AT_SIGN (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_2_AND_AT)))
+/* JISでは単体キー(0x2F)のためLS()を削除し、LEFT_BRACKET(0x2F)を参照 */
+#define AT_SIGN (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_LEFT_BRACKET_AND_LEFT_BRACE))
 #define AT (AT_SIGN)
 #define ATSN (AT_SIGN) // WARNING: DEPRECATED (DO NOT USE)
 
@@ -153,7 +154,8 @@
 #define NUM_6 (NUMBER_6) // WARNING: DEPRECATED (DO NOT USE)
 
 /* Keyboard ^ (Caret) */
-#define CARET (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_6_AND_CARET)))
+/* JISでは単体キー(0x2E)のためLS()を削除し、EQUAL(0x2E)を参照 */
+#define CARET (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_EQUAL_AND_PLUS))
 #define CRRT (CARET) // WARNING: DEPRECATED (DO NOT USE)
 
 /* Keyboard 7 and & (Ampersand) */
@@ -162,7 +164,8 @@
 #define NUM_7 (NUMBER_7) // WARNING: DEPRECATED (DO NOT USE)
 
 /* Keyboard & (Ampersand) */
-#define AMPERSAND (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_7_AND_AMPERSAND)))
+/* JISでは Shift + 6 (0x23) の位置にあるため、参照を 6_AND_CARET に変更 */
+#define AMPERSAND (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_6_AND_CARET)))
 #define AMPS (AMPERSAND)
 
 /* Keyboard 8 and * (Asterisk) */
@@ -171,7 +174,8 @@
 #define NUM_8 (NUMBER_8) // WARNING: DEPRECATED (DO NOT USE)
 
 /* Keyboard * (Asterisk) */
-#define ASTERISK (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_8_AND_ASTERISK)))
+/* JISでは Shift + : (0x34) の位置にあるため、参照を APOSTROPHE_AND_QUOTE に変更 */
+#define ASTERISK (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_APOSTROPHE_AND_QUOTE)))
 #define ASTRK (ASTERISK)
 #define STAR (ASTERISK)
 
@@ -222,7 +226,8 @@
 #define MINUS (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_MINUS_AND_UNDERSCORE))
 
 /* Keyboard _ (Underscore) */
-#define UNDERSCORE (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_MINUS_AND_UNDERSCORE)))
+/* LS()を外し、JISの「ろ」に相当する INTERNATIONAL_1 (0x87) を参照 */
+#define UNDERSCORE (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_INTERNATIONAL_1))
 #define UNDER (UNDERSCORE)
 
 /* Keyboard = and + (Equal and Plus) */
@@ -233,8 +238,9 @@
 #define PLUS (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_EQUAL_AND_PLUS)))
 
 /* Keyboard [ and { (Left Bracket and Left Brace) */
-#define LEFT_BRACKET                                                                               \
-    (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_LEFT_BRACKET_AND_LEFT_BRACE))
+/* JISでは単体キー(0x30)のため、参照を RIGHT_BRACKET(0x30) に変更 */
+#define LEFT_BRACKET                                                                \
+    (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_RIGHT_BRACKET_AND_RIGHT_BRACE))
 #define LBKT (LEFT_BRACKET)
 
 /* Keyboard { (Left Brace) */
@@ -244,8 +250,9 @@
 #define LCUR (LEFT_BRACE) // WARNING: DEPRECATED (DO NOT USE)
 
 /* Keyboard ] and } (Right Bracket and Right Brace) */
-#define RIGHT_BRACKET                                                                              \
-    (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_RIGHT_BRACKET_AND_RIGHT_BRACE))
+/* JISでは単体キー(0x32)のため、参照を NON_US_HASH(0x32) に変更 */
+#define RIGHT_BRACKET                                                               \
+    (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_NON_US_HASH_AND_TILDE))
 #define RBKT (RIGHT_BRACKET)
 
 /* Keyboard } (Right Brace) */
@@ -274,7 +281,8 @@
 #define SCLN (SEMICOLON) // WARNING: DEPRECATED (DO NOT USE)
 
 /* Keyboard : (Colon) */
-#define COLON (LS(ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_SEMICOLON_AND_COLON)))
+/* LS()を外し、物理位置 0x34 (APOSTROPHE_AND_QUOTE) を直接参照 */
+#define COLON (ZMK_HID_USAGE(HID_USAGE_KEY, HID_USAGE_KEY_KEYBOARD_APOSTROPHE_AND_QUOTE))
 #define COLN (COLON) // WARNING: DEPRECATED (DO NOT USE)
 
 /* Keyboard ' and " (Apostrophe and Quote) */
