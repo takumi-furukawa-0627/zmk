@@ -35,6 +35,21 @@ static bool encode_layer_bindings(pb_ostream_t *stream, const pb_field_t *field,
         if (binding && binding->behavior_dev) {
             bb.behavior_id = zmk_behavior_get_local_id(binding->behavior_dev);
             bb.param1 = binding->param1;
+            // JIS物理コードを、Studioで「US配列のこのキー」として表示させるための変換
+            if (bb.param1 == 0x2F) {
+                bb.param1 = 0x1F | (1 << 8);
+            } // [ -> @
+            else if (bb.param1 == 0x2E) {
+                bb.param1 = 0x2D | (1 << 8);
+            } // ^ -> ~
+            else if (bb.param1 == (0x24 | (1 << 8))) {
+                bb.param1 = (0x34);
+            } // JISのShift+7(") -> USの'
+            else if (bb.param1 == (0x2D | (1 << 8))) {
+                bb.param1 = 0x2E;
+            } // JISのShift+-(=) -> USの=
+            // 必要に応じて ( ) などのズレもここに追加
+
             bb.param2 = binding->param2;
         }
 
@@ -143,6 +158,20 @@ zmk_studio_Response set_layer_binding(const zmk_studio_Request *req) {
         .param1 = set_req->binding.param1,
         .param2 = set_req->binding.param2,
     };
+
+    // Studioで選んだ「US配列のキー」を、JIS Windowsで正しく動く「物理コード」に逆変換
+    if (binding.param1 == (0x1F | (1 << 8))) {
+        binding.param1 = 0x2F;
+    } // @ -> [
+    else if (binding.param1 == (0x2D | (1 << 8))) {
+        binding.param1 = 0x2E;
+    } // ~ -> ^
+    else if (binding.param1 == 0x34) {
+        binding.param1 = (0x24 | (1 << 8));
+    } // ' -> Shift+7
+    else if (binding.param1 == 0x2E) {
+        binding.param1 = (0x2D | (1 << 8));
+    } // = -> Shift+-
 
     int ret = zmk_behavior_validate_binding(&binding);
     if (ret < 0) {
